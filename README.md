@@ -46,3 +46,11 @@ docker compose up
 Streamlit : http://localhost:8501
 
 Airflow : http://localhost:8080
+
+🧪 Contrôles qualité – Intégration de Soda
+
+Le projet utilise Soda Core pour automatiser la vérification de la qualité des données. Cette solution simple permet de détecter rapidement les valeurs manquantes ou anomalies dans les datasets. Ainsi, elle garantit la fiabilité des données tout au long du pipeline.
+
+![Interface Airflow 1](images/soda.png)  
+![Interface Airflow 2](images/soda1.png)  
+![Interface Airflow 3](images/soda2.png)
