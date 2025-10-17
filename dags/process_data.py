@@ -2,8 +2,7 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.python import PythonOperator
 from datetime import datetime
-from scripts.file_processor import create_tables, check_and_register_files, insert_file_data
-
+from scripts.file_processor import create_tables, check_and_register_files, insert_file_data, sodascan
 @task
 def only_run_on_even_years(dag_run=None, **kwargs):
     # Skip the check if this DAG run was manually triggered
@@ -41,3 +40,19 @@ with DAG(
     )
 
     check_year >> t1 >> t2 >> t3
+
+with DAG(
+    dag_id="sodacheck",
+    start_date=datetime(2025, 5, 5),
+    # schedule_interval="*/5 * * * *",
+    schedule_interval=None,
+    catchup=False,
+    is_paused_upon_creation=False
+) as dag:
+
+    t1 = PythonOperator(
+        task_id="sodascan",
+        python_callable=sodascan
+    )
+
+    t1
