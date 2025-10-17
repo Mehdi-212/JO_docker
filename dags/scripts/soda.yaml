@@ -1,17 +1,9 @@
 data_source my_database_name:
   type: postgres
   connection:
-    host: localhost
+    host: postgres
     port: '5432'
     username: airflow
     password: airflow
     database: airflow
     schema: public
-# datasources:
-#   my_database_name:
-#     type: postgres
-#     host: localhost
-#     port: 5432
-#     username: airflow
-#     password: airflow
-#     database: airflow
