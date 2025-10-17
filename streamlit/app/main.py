@@ -2,7 +2,7 @@ import psycopg2
 import pandas as pd
 import streamlit as st
 
-st.title("lolilol")
+st.title("requete sql")
 
 conn = psycopg2.connect(
     dbname="airflow",
@@ -12,7 +12,7 @@ conn = psycopg2.connect(
     port="5432"
 )
 
-query = st.text_input("rekaitaissquelle", "SELECT * FROM public.data;")
+query = st.text_input("Requete", "SELECT * FROM public.data;")
 
 def rekait(query):
     try:
@@ -27,10 +27,10 @@ def rekait(query):
     except Exception as e:
         st.error(f"Error: {e}")
 
-if st.button("Run rekait"):
+if st.button("Run requete"):
     rekait(query)
 
-if st.button("flush la db"):
+if st.button("delete la db"):
     cursor = conn.cursor()
     cursor.execute("""
         DELETE FROM data;
@@ -38,4 +38,4 @@ if st.button("flush la db"):
     """)
     conn.commit()
     cursor.close()
-    st.write("oeee la db est flush")
+    st.write("la db est delete")
